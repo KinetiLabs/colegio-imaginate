@@ -1,0 +1,3090 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colegio Imagínate 2025 - Educación Innovadora en Montevideo</title>
+    <meta name="description" content="Colegio Imagínate 2025 - Educación innovadora con Pedagogía 3000, Aulas Felices y Escuelas con Alma. Maternal, Inicial y Primaria en Carrasco, Montevideo.">
+    <meta name="keywords" content="colegio, educación, Montevideo, Carrasco, Pedagogía 3000, Aulas Felices, educación innovadora, colegio bilingüe">
+    <meta name="author" content="Colegio Imagínate 2025">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Colegio Imagínate 2025 - Educación Innovadora">
+    <meta property="og:description" content="Educación innovadora con consciencia y amor. Maternal, Inicial y Primaria en Carrasco, Montevideo.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&q=80">
+    <meta property="og:url" content="https://www.colegioimaginate2025.edu.uy">
+    
+    <!-- Schema.org markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "EducationalOrganization",
+        "name": "Colegio Imagínate 2025",
+        "description": "Educación innovadora con Pedagogía 3000, Aulas Felices y Escuelas con Alma. Maternal, Inicial y Primaria en Carrasco, Montevideo.",
+        "url": "https://www.colegioimaginate2025.edu.uy",
+        "logo": "https://www.colegioimaginate2025.edu.uy/logo.png",
+        "telephone": "+598-99-155-501",
+        "email": "info@imaginat2025.edu.uy",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Alberdi 5982",
+            "addressLocality": "Carrasco",
+            "addressRegion": "Montevideo",
+            "addressCountry": "UY"
+        },
+        "areaServed": "Montevideo",
+        "founders": [
+            {
+                "@type": "Person",
+                "name": "Fundadores Colegio Imagínate"
+            }
+        ],
+        "foundingDate": "2020",
+        "numberOfEmployees": "25",
+        "slogan": "Educación Innovadora con Consciencia y Amor",
+        "sameAs": [
+            "https://facebook.com/colegioimaginate2025",
+            "https://instagram.com/colegioimaginate2025",
+            "https://twitter.com/colegioimaginate",
+            "https://youtube.com/colegioimaginate2025"
+        ]
+    }
+    </script>
+    
+    <!-- Preload crítico -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
+    <link rel="preload" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" as="style">
+    <link rel="preload" href="img/imag/1.jpg" as="image">
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎓</text></svg>">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    
+    <style>
+        :root {
+            /* Nueva paleta de colores violeta y verde */
+            --primary: #6d4aff;          /* Violeta principal */
+            --primary-light: #8a6dff;    /* Violeta claro */
+            --primary-dark: #4d2de3;     /* Violeta oscuro */
+            --secondary: #4caf50;        /* Verde principal */
+            --secondary-light: #6fcf72;  /* Verde claro */
+            --secondary-dark: #2e8b32;   /* Verde oscuro */
+            --accent: #ff6b6b;           /* Color de acento (rojo coral para contraste) */
+            --accent-light: #ff8e8e;     /* Acento claro */
+            --accent-dark: #e05252;      /* Acento oscuro */
+            
+            --text-dark: #2c3e50;
+            --text-medium: #546e7a;
+            --text-light: #78909c;
+            --white: #ffffff;
+            --light-bg: #f8fafc;
+            --light-gray: #eef2f7;
+            
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.12);
+            --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.15);
+            --shadow-xl: 0 15px 40px rgba(0, 0, 0, 0.18);
+            
+            --border-radius: 12px;
+            --border-radius-lg: 20px;
+            --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --transition-fast: all 0.2s ease;
+            
+            --error: #e74c3c;
+            --success: #2ecc71;
+            --warning: #f39c12;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            color: var(--text-dark);
+            overflow-x: hidden;
+            background-color: var(--light-bg);
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.7;
+            font-weight: 400;
+        }
+
+        /* Tipografía mejorada */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+        }
+
+        h2 {
+            font-size: 2.8rem;
+        }
+
+        h3 {
+            font-size: 2rem;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+        }
+
+        /* Utilidades */
+        .container {
+            width: 90%;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 6px;
+            background: var(--primary);
+            color: white;
+            padding: 12px;
+            z-index: 10000;
+            text-decoration: none;
+            border-radius: 0 0 8px 8px;
+            transition: var(--transition);
+            font-weight: 600;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
+        /* Header mejorado */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            box-shadow: var(--shadow-sm);
+            z-index: 1000;
+            transition: var(--transition);
+            padding: 0;
+        }
+
+        header.scrolled {
+            padding: 0;
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: var(--shadow-md);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            font-weight: 800;
+            color: var(--primary);
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .logo:hover {
+            transform: translateY(-2px);
+        }
+
+        .logo-icon {
+            font-size: 2.2rem;
+            margin-right: 12px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 1.05rem;
+            transition: var(--transition);
+            position: relative;
+            padding: 8px 0;
+            cursor: pointer;
+        }
+
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: var(--transition);
+            border-radius: 2px;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary);
+        }
+
+        .nav-links a:hover:after,
+        .nav-links a.active:after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.6rem;
+            color: var(--primary);
+            padding: 8px;
+            transition: var(--transition);
+        }
+
+        .hamburger:hover {
+            transform: scale(1.1);
+        }
+
+        /* Hero Slider Styles */
+        .hero {
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            margin-top: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-slider {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.4);
+        }
+
+        /* Controles del slider */
+        .slider-controls {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            transform: translateY(-50%);
+            display: flex;
+            justify-content: space-between;
+            padding: 0 2rem;
+            z-index: 3;
+        }
+
+        .slider-prev,
+        .slider-next {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+            font-size: 1.2rem;
+        }
+
+        .slider-prev:hover,
+        .slider-next:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        /* Indicadores */
+        .slider-indicators {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 3;
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: none;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .indicator.active {
+            background: var(--white);
+            transform: scale(1.2);
+        }
+
+        .indicator:hover {
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Asegurar que el contenido esté por encima del slider */
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: var(--white);
+            max-width: 900px;
+            padding: 0 2rem;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        /* Botones mejorados */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 36px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            gap: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: var(--transition);
+        }
+
+        .btn:hover:before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+            color: var(--white);
+            box-shadow: 0 6px 20px rgba(255, 123, 84, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(255, 123, 84, 0.6);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.15);
+            color: var(--white);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Secciones mejoradas */
+        section {
+            padding: 120px 0;
+            position: relative;
+        }
+
+        .section-light {
+            background: var(--white);
+        }
+
+        .section-gray {
+            background: var(--light-gray);
+        }
+
+        .section-pattern {
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--secondary-light) 100%);
+            color: var(--white);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title.light h2 {
+            color: var(--white);
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+
+        .section-title.light:after {
+            background: linear-gradient(90deg, var(--white), rgba(255,255,255,0.7));
+        }
+
+        .section-subtitle {
+            font-size: 1.3rem;
+            color: var(--text-medium);
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            text-align: center;
+        }
+
+        .section-subtitle.light {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Cards mejoradas */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: var(--border-radius-lg);
+            padding: 3rem 2rem;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+
+        .card:hover {
+            transform: translateY(-12px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .card-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1.2rem;
+            color: var(--text-dark);
+        }
+
+        .card p {
+            color: var(--text-medium);
+            font-size: 1.05rem;
+        }
+
+        /* Stats mejorados */
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: var(--border-radius);
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
+        }
+
+        .stat-item:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 600;
+        }
+
+        /* Testimonials mejorados */
+        .testimonials-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .testimonial {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .testimonial:before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            left: 25px;
+            font-size: 5rem;
+            color: var(--primary-light);
+            opacity: 0.2;
+            line-height: 1;
+        }
+
+        .testimonial:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .testimonial-content {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            color: var(--text-medium);
+            font-size: 1.05rem;
+            line-height: 1.7;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .author-info strong {
+            display: block;
+            color: var(--text-dark);
+            margin-bottom: 0.3rem;
+        }
+
+        .author-info span {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Gallery mejorada */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .gallery-item {
+            height: 280px;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            cursor: pointer;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.03);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Contact section mejorada */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.2rem;
+            padding: 1.5rem;
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .contact-item i {
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-top: 0.2rem;
+            min-width: 30px;
+        }
+
+        .contact-item strong {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .contact-item p {
+            margin: 0;
+            color: var(--text-medium);
+        }
+
+        .map-container {
+            height: 500px;
+            border-radius: var(--border-radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        #map {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Formulario mejorado */
+        .form-container {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .form-container h3 {
+            color: var(--text-dark);
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
+            text-align: center;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.7rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem 1.2rem;
+            border: 2px solid var(--light-gray);
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: var(--transition);
+            background: var(--light-bg);
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: var(--white);
+            box-shadow: 0 0 0 4px rgba(74, 107, 175, 0.1);
+        }
+
+        .form-group textarea {
+            min-height: 140px;
+            resize: vertical;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+        }
+
+        .checkbox-group label {
+            margin-bottom: 0;
+            font-weight: normal;
+        }
+
+        /* Estados de validación del formulario */
+        .form-group.error input,
+        .form-group.error textarea,
+        .form-group.error select {
+            border-color: var(--error);
+            box-shadow: 0 0 0 4px rgba(231, 76, 60, 0.1);
+        }
+
+        .form-group.success input,
+        .form-group.success textarea,
+        .form-group.success select {
+            border-color: var(--success);
+            box-shadow: 0 0 0 4px rgba(46, 204, 113, 0.1);
+        }
+
+        .error-message {
+            color: var(--error);
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        .form-group.error .error-message {
+            display: block;
+        }
+
+        .success-message {
+            color: var(--success);
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        .form-group.success .success-message {
+            display: block;
+        }
+
+        /* Footer mejorado */
+        footer {
+            background: linear-gradient(135deg, var(--text-dark) 0%, #1a2536 100%);
+            color: var(--white);
+            padding: 5rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+            position: relative;
+            padding-bottom: 0.8rem;
+        }
+
+        .footer-section h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+
+        .footer-section p {
+            margin-bottom: 1.5rem;
+            opacity: 0.8;
+        }
+
+        .footer-contact p {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .footer-contact i {
+            margin-right: 0.8rem;
+            margin-top: 0.2rem;
+            color: var(--primary-light);
+            min-width: 20px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+            display: block;
+            padding: 0.3rem 0;
+            cursor: pointer;
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+            transform: translateX(8px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--white);
+            font-size: 1.2rem;
+            transition: var(--transition);
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .work-with-us-btn {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 12px 25px;
+            background: var(--secondary);
+            color: var(--white);
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .work-with-us-btn:hover {
+            background: var(--secondary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(44, 138, 113, 0.4);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        /* WhatsApp button mejorado */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #25d366, #128c7e);
+            color: #fff;
+            border-radius: 50px;
+            text-align: center;
+            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.5);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            padding: 14px 22px;
+            transition: var(--transition);
+            animation: float 3s ease-in-out infinite;
+            cursor: pointer;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        .whatsapp-float:hover {
+            transform: translateY(-5px);
+            animation: none;
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.7);
+        }
+
+        .whatsapp-text {
+            font-size: 15px;
+            margin-right: 8px;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .whatsapp-float i {
+            font-size: 1.6rem;
+            color: #fff;
+        }
+
+        /* Chatbot Styles - MEJORADO */
+        .chat-widget {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 380px;
+            height: 550px;
+            background: var(--white);
+            border-radius: 20px;
+            box-shadow: var(--shadow-xl);
+            z-index: 1000;
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            transition: var(--transition);
+            border: 1px solid var(--light-gray);
+        }
+
+        .chat-widget.active {
+            display: flex;
+            animation: chatSlideIn 0.3s ease-out;
+        }
+
+        @keyframes chatSlideIn {
+            from {
+                transform: translateY(20px) scale(0.95);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+        }
+
+        .chat-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .chat-header-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .chat-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .chat-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .chat-status {
+            font-size: 0.8rem;
+            opacity: 0.8;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--success);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        .chat-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .chat-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            background: var(--light-bg);
+        }
+
+        .chat-message {
+            max-width: 85%;
+            padding: 12px 16px;
+            border-radius: 18px;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            position: relative;
+            animation: messageSlideIn 0.3s ease-out;
+        }
+
+        @keyframes messageSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .bot-message {
+            background: var(--white);
+            align-self: flex-start;
+            border-bottom-left-radius: 5px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--light-gray);
+        }
+
+        .user-message {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 5px;
+            box-shadow: 0 2px 10px rgba(109, 74, 255, 0.3);
+        }
+
+        .message-time {
+            font-size: 0.7rem;
+            opacity: 0.7;
+            margin-top: 5px;
+            text-align: right;
+        }
+
+        .quick-replies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .quick-reply {
+            background: var(--light-gray);
+            border: none;
+            border-radius: 15px;
+            padding: 6px 12px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .quick-reply:hover {
+            background: var(--primary-light);
+            color: white;
+        }
+
+        .chat-input-container {
+            padding: 15px;
+            border-top: 1px solid var(--light-gray);
+            background: var(--white);
+            display: flex;
+            gap: 10px;
+            align-items: flex-end;
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 2px solid var(--light-gray);
+            border-radius: 25px;
+            outline: none;
+            font-family: inherit;
+            resize: none;
+            max-height: 100px;
+            transition: var(--transition);
+        }
+
+        .chat-input:focus {
+            border-color: var(--primary);
+        }
+
+        .chat-send {
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .chat-send:hover {
+            background: var(--primary-dark);
+            transform: scale(1.05);
+        }
+
+        .chat-send:disabled {
+            background: var(--text-light);
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .chat-toggle {
+            position: fixed;
+            bottom: 170px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: var(--shadow-xl);
+            cursor: pointer;
+            z-index: 100;
+            transition: var(--transition);
+        }
+
+        .chat-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .chat-toggle.pulse {
+            animation: chatPulse 2s infinite;
+        }
+
+        @keyframes chatPulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(109, 74, 255, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(109, 74, 255, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(109, 74, 255, 0);
+            }
+        }
+
+        /* Booking Modal */
+        .booking-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+        }
+
+        .booking-modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        /* Blog Section */
+        .blog-card {
+            text-align: left;
+            position: relative;
+        }
+
+        .blog-date {
+            background: var(--primary);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        /* Animaciones mejoradas */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-60px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .slide-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(60px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .slide-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .zoom-in {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .zoom-in.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Progress scroll indicator */
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: transparent;
+            z-index: 1001;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.2rem;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            opacity: 0;
+            visibility: hidden;
+            z-index: 99;
+            cursor: pointer;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: var(--primary-dark);
+            transform: translateY(-5px);
+        }
+
+        /* Message styles */
+        .message-toast {
+            position: fixed;
+            top: 100px;
+            right: 30px;
+            padding: 16px 24px;
+            border-radius: 10px;
+            color: white;
+            z-index: 3000;
+            animation: slideIn 0.3s ease;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            max-width: 400px;
+            font-weight: 600;
+        }
+
+        .message-toast.success {
+            background: var(--success);
+        }
+
+        .message-toast.error {
+            background: var(--error);
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Media Queries - Responsividad mejorada */
+        @media (max-width: 1200px) {
+            .container {
+                width: 95%;
+            }
+            
+            h1 {
+                font-size: 3.2rem;
+            }
+            
+            h2 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .hero p {
+                font-size: 1.3rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.5rem;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .chat-widget {
+                width: 350px;
+                height: 500px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                padding-top: 4rem;
+                transition: var(--transition);
+                box-shadow: var(--shadow-lg);
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links li {
+                margin: 1.5rem 0;
+            }
+
+            .hero {
+                margin-top: 80px;
+                height: 80vh;
+                min-height: 600px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            section {
+                padding: 80px 0;
+            }
+
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .testimonials-container {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+
+            .slider-controls {
+                padding: 0 1rem;
+            }
+
+            .slider-prev,
+            .slider-next {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+
+            .slider-indicators {
+                bottom: 20px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2.5rem;
+            }
+
+            .footer-section h3:after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+
+            .whatsapp-float {
+                bottom: 20px;
+                right: 20px;
+                padding: 12px 18px;
+            }
+
+            .back-to-top {
+                bottom: 20px;
+                left: 20px;
+                width: 45px;
+                height: 45px;
+            }
+
+            .message-toast {
+                right: 20px;
+                left: 20px;
+                max-width: none;
+            }
+
+            .chat-toggle {
+                bottom: 150px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+            }
+
+            .chat-widget {
+                width: calc(100vw - 40px);
+                height: 60vh;
+                bottom: 80px;
+                right: 20px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .btn {
+                padding: 14px 28px;
+                font-size: 1rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .card {
+                padding: 2.5rem 1.5rem;
+            }
+
+            .form-container {
+                padding: 2rem 1.5rem;
+            }
+
+            .testimonial {
+                padding: 2rem 1.5rem;
+            }
+
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .slider-controls {
+                padding: 0 0.5rem;
+            }
+
+            .slider-prev,
+            .slider-next {
+                width: 35px;
+                height: 35px;
+            }
+
+            .whatsapp-float {
+                bottom: 15px;
+                right: 15px;
+                padding: 10px 16px;
+            }
+
+            .whatsapp-text {
+                font-size: 0.9rem;
+            }
+
+            .back-to-top {
+                bottom: 15px;
+                left: 15px;
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+
+            .chat-widget {
+                width: calc(100vw - 30px);
+                height: 65vh;
+                bottom: 70px;
+                right: 15px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .logo {
+                font-size: 1.3rem;
+            }
+            
+            .logo-icon {
+                font-size: 1.8rem;
+            }
+            
+            .chat-widget {
+                width: calc(100vw - 20px);
+                right: 10px;
+            }
+        }
+
+        /* Prefers reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            
+            .whatsapp-float {
+                animation: none;
+            }
+            
+            .chat-toggle.pulse {
+                animation: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Progress bar -->
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- Skip link para accesibilidad -->
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+
+    <!-- Back to top button -->
+    <a href="#" class="back-to-top" id="backToTop" aria-label="Volver arriba">
+        <i class="fas fa-chevron-up"></i>
+    </a>
+
+    <!-- Header y Navegación -->
+    <header role="banner">
+        <div class="container">
+            <nav role="navigation" aria-label="Navegación principal">
+                <a href="#" class="logo">
+                    <i class="fas fa-graduation-cap logo-icon"></i>
+                    <span>Colegio Imagínate 2025</span>
+                </a>
+                <button class="hamburger" aria-expanded="false" aria-controls="nav-links" aria-label="Menú de navegación">
+                    <i class="fas fa-bars" aria-hidden="true"></i>
+                </button>
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="#inicio" class="nav-link">Inicio</a></li>
+                    <li><a href="#nosotros" class="nav-link">Nuestro Colegio</a></li>
+                    <li><a href="#proyecto" class="nav-link">Proyecto Educativo</a></li>
+                    <li><a href="#niveles" class="nav-link">Niveles</a></li>
+                    <li><a href="#blog" class="nav-link">Noticias</a></li>
+                    <li><a href="#comunidad" class="nav-link">Comunidad</a></li>
+                    <li><a href="#contacto" class="nav-link">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section con Slider -->
+    <section class="hero" id="inicio" role="region" aria-label="Presentación del colegio">
+        <!-- Slider de imágenes -->
+        <div class="hero-slider">
+            <div class="slide active">
+                <img src="img/imag/1.jpg" alt="Estudiantes felices en el aula participando en actividad educativa" loading="eager" width="1200" height="800">
+            </div>
+            <div class="slide">
+                <img src="img/imag/1a.jpeg" alt="Niños aprendiendo con tecnología en el aula de informática" loading="lazy" width="1200" height="800">
+            </div>
+            <div class="slide">
+                <img src="img/imag/2.jpg" alt="Actividades al aire libre en el patio del colegio" loading="lazy" width="1200" height="800">
+            </div>
+            <div class="slide">
+                <img src="img/imag/4.JPG" alt="Arte y creatividad en el colegio - estudiantes en clase de arte" loading="lazy" width="1200" height="800">
+            </div>
+            <div class="slide">
+                <img src="img/imag/5.jpeg" alt="Profesores y estudiantes interactuando en el aula" loading="lazy" width="1200" height="800">
+            </div>
+            <div class="slide">
+                <img src="img/imag/8.jpeg" alt="Actividad grupal de estudiantes en el salón de clases" loading="lazy" width="1200" height="800">
+            </div>
+        </div>
+        
+        <!-- Controles del slider -->
+        <div class="slider-controls">
+            <button class="slider-prev" aria-label="Imagen anterior">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="slider-next" aria-label="Siguiente imagen">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+        
+        <!-- Indicadores de slides -->
+        <div class="slider-indicators">
+            <button class="indicator active" aria-label="Ir a imagen 1"></button>
+            <button class="indicator" aria-label="Ir a imagen 2"></button>
+            <button class="indicator" aria-label="Ir a imagen 3"></button>
+            <button class="indicator" aria-label="Ir a imagen 4"></button>
+            <button class="indicator" aria-label="Ir a imagen 5"></button>
+        </div>
+        
+        <!-- Contenido del hero -->
+        <div class="hero-content">
+            <h1>Educación Innovadora con Consciencia y Amor</h1>
+            <p>Formamos a los líderes del mañana con metodologías activas y un enfoque integral del aprendizaje</p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="#contacto" class="btn btn-primary">Agendar Visita Guiada</a>
+                <button class="btn btn-secondary" id="openBookingModal">Reservar Entrevista</button>
+            </div>
+        </div>
+    </section>
+
+    <main id="main-content">
+        <!-- Sección Nosotros -->
+        <section id="nosotros" class="section-light">
+            <div class="container">
+                <div class="section-title fade-in">
+                    <h2>Nuestro Colegio</h2>
+                    <p class="section-subtitle">Con más de 5 años de experiencia, somos referentes en educación innovadora en Uruguay</p>
+                </div>
+                <div class="cards-grid">
+                    <div class="card fade-in">
+                        <i class="fas fa-history card-icon"></i>
+                        <h3>Historia</h3>
+                        <p>Fundado en 2020, nuestro colegio nace de la visión de educadores comprometidos con una educación transformadora que prepare a los estudiantes para los desafíos del siglo XXI.</p>
+                    </div>
+                    <div class="card fade-in">
+                        <i class="fas fa-eye card-icon"></i>
+                        <h3>Visión</h3>
+                        <p>Ser el referente en educación innovadora en Uruguay, formando personas conscientes, creativas y comprometidas con la construcción de un mundo mejor.</p>
+                    </div>
+                    <div class="card fade-in">
+                        <i class="fas fa-bullseye card-icon"></i>
+                        <h3>Misión</h3>
+                        <p>Brindar una educación de excelencia que desarrolle todas las dimensiones del ser humano, fomentando el pensamiento crítico y la conciencia social.</p>
+                    </div>
+                </div>
+                
+                <!-- Estadísticas -->
+                <div class="stats-container">
+                    <div class="stat-item fade-in">
+                        <span class="stat-number" data-count="350">0</span>
+                        <span class="stat-label">Estudiantes</span>
+                    </div>
+                    <div class="stat-item fade-in">
+                        <span class="stat-number" data-count="98">0</span>
+                        <span class="stat-label">% Satisfacción</span>
+                    </div>
+                    <div class="stat-item fade-in">
+                        <span class="stat-number" data-count="25">0</span>
+                        <span class="stat-label">Docentes</span>
+                    </div>
+                    <div class="stat-item fade-in">
+                        <span class="stat-number" data-count="5">0</span>
+                        <span class="stat-label">Años de Experiencia</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Proyecto Educativo -->
+        <section id="proyecto" class="section-pattern">
+            <div class="container">
+                <div class="section-title light fade-in">
+                    <h2>Proyecto Educativo</h2>
+                    <p class="section-subtitle light">Implementamos metodologías innovadoras que responden a las necesidades de los niños del siglo XXI</p>
+                </div>
+                <div class="cards-grid">
+                    <div class="card zoom-in">
+                        <i class="fas fa-leaf card-icon"></i>
+                        <h3>Pedagogía 3000</h3>
+                        <p>Abordamos las 7 dimensiones del ser humano para un desarrollo integral: física, emocional, cognitiva, social, ecológica, estética y espiritual.</p>
+                    </div>
+                    <div class="card zoom-in">
+                        <i class="fas fa-smile card-icon"></i>
+                        <h3>Aulas Felices</h3>
+                        <p>Trabajamos con las 6 virtudes y 24 fortalezas para promover el bienestar y desarrollo positivo de nuestros estudiantes.</p>
+                    </div>
+                    <div class="card zoom-in">
+                        <i class="fas fa-heart card-icon"></i>
+                        <h3>Escuelas con Alma</h3>
+                        <p>Talleres "Te acompaño" para familias, porque creemos en una educación que involucra a toda la comunidad educativa.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Niveles Educativos -->
+        <section id="niveles" class="section-gray">
+            <div class="container">
+                <div class="section-title fade-in">
+                    <h2>Niveles Educativos</h2>
+                    <p class="section-subtitle">Ofrecemos una educación integral adaptada a cada etapa del desarrollo</p>
+                </div>
+                <div class="cards-grid">
+                    <div class="card slide-in-left">
+                        <i class="fas fa-baby card-icon"></i>
+                        <h3>Maternal (1-2 años)</h3>
+                        <p>Ambiente seguro y estimulante para los más pequeños, con cuidados personalizados y primeras experiencias de socialización.</p>
+                        <a href="#contacto" class="btn btn-outline" style="margin-top: 1rem;">Solicitar Información</a>
+                    </div>
+                    <div class="card fade-in">
+                        <i class="fas fa-child card-icon"></i>
+                        <h3>Inicial (3-5 años)</h3>
+                        <p>Espacios de exploración y juego que fomentan la curiosidad, la creatividad y el desarrollo de habilidades básicas.</p>
+                        <a href="#contacto" class="btn btn-outline" style="margin-top: 1rem;">Solicitar Información</a>
+                    </div>
+                    <div class="card slide-in-right">
+                        <i class="fas fa-book-open card-icon"></i>
+                        <h3>Primaria (6-12 años)</h3>
+                        <p>Aprendizaje significativo a través de proyectos, desarrollando el pensamiento crítico y las habilidades sociales.</p>
+                        <a href="#contacto" class="btn btn-outline" style="margin-top: 1rem;">Solicitar Información</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Blog/Noticias -->
+        <section id="blog" class="section-light">
+            <div class="container">
+                <div class="section-title fade-in">
+                    <h2>Últimas Noticias</h2>
+                    <p class="section-subtitle">Mantente informado sobre nuestras actividades y novedades educativas</p>
+                </div>
+                <div class="cards-grid">
+                    <article class="card blog-card fade-in">
+                        <div class="blog-date">15 Mar 2025</div>
+                        <h3>Taller de Robótica para Primaria</h3>
+                        <p>Nuestros estudiantes de primaria participaron en un emocionante taller de robótica educativa donde aprendieron programación básica y construcción de robots.</p>
+                        <a href="#" class="btn btn-outline">Leer más</a>
+                    </article>
+                    <article class="card blog-card fade-in">
+                        <div class="blog-date">28 Feb 2025</div>
+                        <h3>Feria de Ciencias 2025</h3>
+                        <p>Gran éxito en nuestra feria anual de ciencias donde los estudiantes presentaron proyectos innovadores sobre sostenibilidad y tecnología.</p>
+                        <a href="#" class="btn btn-outline">Leer más</a>
+                    </article>
+                    <article class="card blog-card fade-in">
+                        <div class="blog-date">10 Feb 2025</div>
+                        <h3>Nuevo Programa de Arte</h3>
+                        <p>Implementamos un nuevo programa integral de artes que incluye música, pintura, danza y teatro para el desarrollo creativo de nuestros estudiantes.</p>
+                        <a href="#" class="btn btn-outline">Leer más</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Testimonios -->
+        <section id="testimonios" class="section-light">
+            <div class="container">
+                <div class="section-title fade-in">
+                    <h2>Lo que dicen las familias</h2>
+                    <p class="section-subtitle">La experiencia de quienes confían en nuestra propuesta educativa</p>
+                </div>
+                <div class="testimonials-container">
+                    <div class="testimonial fade-in">
+                        <div class="testimonial-content">
+                            <p>"El colegio ha superado todas nuestras expectativas. Nuestra hija ha desarrollado una confianza increíble y ama ir al colegio cada día. La metodología innovadora realmente hace la diferencia."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">FG</div>
+                            <div class="author-info">
+                                <strong>Familia González</strong>
+                                <span>Padres de Sofia (Inicial)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial fade-in">
+                        <div class="testimonial-content">
+                            <p>"La metodología innovadora y el trato personalizado han hecho una diferencia enorme en el aprendizaje de nuestros hijos. Los docentes están realmente comprometidos con el desarrollo integral de cada niño."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">FR</div>
+                            <div class="author-info">
+                                <strong>Familia Rodríguez</strong>
+                                <span>Padres de Mateo y Valentina</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial fade-in">
+                        <div class="testimonial-content">
+                            <p>"Como educadora, valoro especialmente el enfoque integral y el cuidado emocional que brindan a cada niño. Es el colegio que soñaba para mi hija, donde se valora tanto el ser como el saber."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">FP</div>
+                            <div class="author-info">
+                                <strong>Familia Pérez</strong>
+                                <span>Padres de Emma (Primaria)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Comunidad -->
+        <section id="comunidad" class="section-pattern">
+            <div class="container">
+                <div class="section-title light fade-in">
+                    <h2>Comunidad Educativa</h2>
+                    <p class="section-subtitle light">Una educación que involucra a toda la comunidad</p>
+                </div>
+                <div class="cards-grid">
+                    <div class="card zoom-in">
+                        <i class="fas fa-users card-icon"></i>
+                        <h3>Familias</h3>
+                        <p>Mantenemos comunicación constante a través de la app Eeventifica, talleres y reuniones periódicas. Creemos en la corresponsabilidad educativa familia-escuela.</p>
+                    </div>
+                    <div class="card zoom-in">
+                        <i class="fas fa-paint-brush card-icon"></i>
+                        <h3>Actividades</h3>
+                        <p>Arte, música, deportes, robótica y paseos que complementan la formación académica y desarrollan talentos. Programa extracurricular diversificado.</p>
+                    </div>
+                    <div class="card zoom-in">
+                        <i class="fas fa-star card-icon"></i>
+                        <h3>¿Por qué elegirnos?</h3>
+                        <p>Porque ofrecemos una educación integral que prepara para la vida, con consciencia, amor y excelencia académica. Formamos personas felices y competentes.</p>
+                    </div>
+                </div>
+                
+                <h3 class="section-title light" style="margin-top: 4rem;">Galería</h3>
+                <div class="gallery">
+                    <div class="gallery-item fade-in">
+                        <img src="img/imag/galeria1.jpeg" alt="Estudiantes en el aula participando en actividad grupal" loading="lazy" width="400" height="300">
+                    </div>
+                    <div class="gallery-item fade-in">
+                        <img src="img/imag/galeria2.jpeg" alt="Niños jugando en el patio del colegio" loading="lazy" width="400" height="300">
+                    </div>
+                    <div class="gallery-item fade-in">
+                        <img src="img/imag/galeria3.jpeg" alt="Profesor explicando lección a estudiantes atentos" loading="lazy" width="400" height="300">
+                    </div>
+                    <div class="gallery-item fade-in">
+                        <img src="img/imag/galeria4.JPG" alt="Actividad artística en el colegio - niños pintando" loading="lazy" width="400" height="300">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Contacto -->
+        <section id="contacto" class="section-light">
+            <div class="container">
+                <div class="section-title fade-in">
+                    <h2>Contacto</h2>
+                    <p class="section-subtitle">Estamos aquí para responder todas tus preguntas</p>
+                </div>
+                
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <h3>Información de Contacto</h3>
+                        <div class="contact-item fade-in">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <strong>Sede Carrasco</strong>
+                                <p>Alberdi 5982, Carrasco, Montevideo, Uruguay</p>
+                            </div>
+                        </div>
+                        <div class="contact-item fade-in">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <strong>Teléfonos</strong>
+                                <p>Carrasco: +598 99 155 501</p>
+                                <p>Centro: +598 99 155 502</p>
+                            </div>
+                        </div>
+                        <div class="contact-item fade-in">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <strong>Email</strong>
+                                <p>info@imaginat2025.edu.uy</p>
+                            </div>
+                        </div>
+                        <div class="contact-item fade-in">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <strong>Horario de Atención</strong>
+                                <p>Lunes a Viernes: 8:00 - 17:00</p>
+                                <p>Sábados: 9:00 - 12:00</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="map-container fade-in">
+                        <div id="map"></div>
+                    </div>
+                </div>
+                
+                <div class="form-container fade-in" style="margin-top: 4rem;">
+                    <h3>Solicitar Información</h3>
+                    <form id="contact-form" novalidate>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Nombre completo *</label>
+                                <input type="text" id="name" name="name" required aria-required="true">
+                                <div class="error-message">Por favor ingresa tu nombre completo</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email *</label>
+                                <input type="email" id="email" name="email" required aria-required="true">
+                                <div class="error-message">Por favor ingresa un email válido</div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="phone">Teléfono</label>
+                                <input type="tel" id="phone" name="phone">
+                                <div class="error-message">Por favor ingresa un teléfono válido</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="child-age">Edad del niño/a</label>
+                                <select id="child-age" name="child-age">
+                                    <option value="">Seleccionar</option>
+                                    <option value="1-2">1-2 años (Maternal)</option>
+                                    <option value="3-5">3-5 años (Inicial)</option>
+                                    <option value="6-12">6-12 años (Primaria)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="children-count">¿Cuántos hijos tiene?</label>
+                            <select id="children-count" name="children-count">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4+">4 o más</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="sede">Sede de interés</label>
+                            <select id="sede" name="sede">
+                                <option value="">Seleccionar</option>
+                                <option value="carrasco">Carrasco</option>
+                                <option value="centro">Centro</option>
+                                <option value="ambas">Ambas</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="visit-type">Tipo de visita preferida</label>
+                            <select id="visit-type" name="visit-type">
+                                <option value="">Seleccionar</option>
+                                <option value="presencial">Presencial</option>
+                                <option value="virtual">Virtual</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Mensaje *</label>
+                            <textarea id="message" name="message" required aria-required="true" placeholder="Cuéntanos en qué podemos ayudarte..."></textarea>
+                            <div class="error-message">Por favor ingresa tu mensaje</div>
+                        </div>
+                        <div class="form-group checkbox-group">
+                            <input type="checkbox" id="newsletter" name="newsletter">
+                            <label for="newsletter">Deseo recibir información sobre actividades y novedades del colegio</label>
+                        </div>
+                        <div class="form-group checkbox-group">
+                            <input type="checkbox" id="privacy" name="privacy" required>
+                            <label for="privacy">Acepto la política de privacidad *</label>
+                            <div class="error-message">Debes aceptar la política de privacidad</div>
+                        </div>
+                        <!-- reCAPTCHA placeholder -->
+                        <div class="form-group" id="recaptcha-container">
+                            <div style="background: #f9f9f9; padding: 15px; border-radius: 8px; text-align: center; color: #666;">
+                                <i class="fas fa-shield-alt" style="font-size: 24px; margin-bottom: 10px; display: block;"></i>
+                                Protegido por reCAPTCHA
+                            </div>
+                        </div>
+                        <input type="hidden" name="_gotcha" style="display:none !important">
+                        <input type="hidden" name="_subject" value="Nueva solicitud de información - Colegio Imagínate 2025">
+                        <button type="submit" class="btn btn-primary btn-full">Enviar solicitud</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer role="contentinfo">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Colegio Imagínate 2025</h3>
+                    <p>Educación innovadora con consciencia y amor. Formando a los líderes del mañana con valores sólidos y habilidades para el siglo XXI.</p>
+                    <div class="footer-contact">
+                        <p><i class="fas fa-map-marker-alt"></i> Carrasco, Montevideo, Uruguay</p>
+                        <p><i class="fas fa-phone"></i> +598 99 155 501</p>
+                        <p><i class="fas fa-envelope"></i> info@imaginat2025.edu.uy</p>
+                    </div>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfTuDqQ1sS0fUy6G9Q3gKJzLxWmXaVcZvYb7NqLpM6rHj5w/viewform?usp=sf_link" class="work-with-us-btn" target="_blank" rel="noopener">Trabaje con Nosotros</a>
+                </div>
+                
+                <div class="footer-section footer-links">
+                    <h3>Enlaces Rápidos</h3>
+                    <ul>
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="#nosotros">Nuestro Colegio</a></li>
+                        <li><a href="#proyecto">Proyecto Educativo</a></li>
+                        <li><a href="#niveles">Niveles</a></li>
+                        <li><a href="#blog">Noticias</a></li>
+                        <li><a href="#comunidad">Comunidad</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Horario de Atención</h3>
+                    <p><i class="fas fa-clock"></i> Lunes a Viernes: 8:00 - 17:00</p>
+                    <p><i class="fas fa-clock"></i> Sábados: 9:00 - 12:00</p>
+                    
+                    <h3 style="margin-top: 1.5rem;">Síguenos</h3>
+                    <div class="social-links">
+                        <a href="https://facebook.com/colegioimaginate2025" aria-label="Síguenos en Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://instagram.com/colegioimaginate2025" aria-label="Síguenos en Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://twitter.com/colegioimaginate" aria-label="Síguenos en Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="https://youtube.com/colegioimaginate2025" aria-label="Visita nuestro canal de YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Colegio Imagínate 2025 - Todos los derechos reservados.</p>
+                <p>Desarrollado por <a href="https://kinetilabs.com" target="_blank" rel="noopener" style="color: var(--primary-light);">KinetiLabs</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botón de WhatsApp -->
+    <a href="https://wa.me/59899155501?text=Hola,%20me%20interesa%20obtener%20información%20sobre%20el%20colegio" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
+        <span class="whatsapp-text">¿Consultas? Escríbenos</span>
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Chat Toggle -->
+    <button class="chat-toggle pulse" id="chatToggle" aria-label="Abrir chat">
+        <i class="fas fa-comments"></i>
+    </button>
+
+    <!-- Chat Widget MEJORADO -->
+    <div class="chat-widget" id="chatWidget">
+        <div class="chat-header">
+            <div class="chat-header-info">
+                <div class="chat-avatar">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div>
+                    <div class="chat-title">Asistente Virtual</div>
+                    <div class="chat-status">
+                        <span class="status-dot"></span>
+                        <span>En línea</span>
+                    </div>
+                </div>
+            </div>
+            <button class="chat-close" id="chatClose" aria-label="Cerrar chat">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <div class="chat-message bot-message">
+                ¡Hola! Soy el asistente del Colegio Imagínate. ¿En qué puedo ayudarte hoy?
+                <div class="quick-replies">
+                    <button class="quick-reply" data-question="precios">Precios y aranceles</button>
+                    <button class="quick-reply" data-question="horarios">Horarios</button>
+                    <button class="quick-reply" data-question="inscripcion">Proceso de inscripción</button>
+                </div>
+                <div class="message-time">Ahora</div>
+            </div>
+        </div>
+        <div class="chat-input-container">
+            <textarea class="chat-input" id="chatInput" placeholder="Escribe tu pregunta..." rows="1"></textarea>
+            <button class="chat-send" id="sendMessage" aria-label="Enviar mensaje">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Booking Modal -->
+    <div class="booking-modal" id="bookingModal">
+        <div class="modal-content">
+            <h3>Reservar Entrevista</h3>
+            <form id="booking-form">
+                <div class="form-group">
+                    <label for="booking-name">Nombre completo *</label>
+                    <input type="text" id="booking-name" name="booking-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="booking-email">Email *</label>
+                    <input type="email" id="booking-email" name="booking-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="booking-date">Fecha preferida *</label>
+                    <input type="date" id="booking-date" name="booking-date" required>
+                </div>
+                <div class="form-group">
+                    <label for="booking-time">Hora preferida *</label>
+                    <select id="booking-time" name="booking-time" required>
+                        <option value="09:00">09:00 AM</option>
+                        <option value="10:00">10:00 AM</option>
+                        <option value="11:00">11:00 AM</option>
+                        <option value="14:00">02:00 PM</option>
+                        <option value="15:00">03:00 PM</option>
+                        <option value="16:00">04:00 PM</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="booking-type">Tipo de entrevista *</label>
+                    <select id="booking-type" name="booking-type" required>
+                        <option value="presencial">Presencial</option>
+                        <option value="virtual">Virtual</option>
+                    </select>
+                </div>
+                <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+                    <button type="submit" class="btn btn-primary">Reservar</button>
+                    <button type="button" class="btn btn-outline" id="closeBookingModal">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
+
+    <script>
+        // JavaScript mejorado con todas las funcionalidades
+        document.addEventListener('DOMContentLoaded', function() {
+            // ========== SLIDER ==========
+            function initSlider() {
+                const slides = document.querySelectorAll('.slide');
+                const indicators = document.querySelectorAll('.indicator');
+                const prevBtn = document.querySelector('.slider-prev');
+                const nextBtn = document.querySelector('.slider-next');
+                let currentSlide = 0;
+                let slideInterval;
+
+                function showSlide(index) {
+                    slides.forEach(slide => slide.classList.remove('active'));
+                    indicators.forEach(indicator => indicator.classList.remove('active'));
+                    
+                    slides[index].classList.add('active');
+                    indicators[index].classList.add('active');
+                    currentSlide = index;
+                }
+
+                function nextSlide() {
+                    let next = currentSlide + 1;
+                    if (next >= slides.length) next = 0;
+                    showSlide(next);
+                }
+
+                function prevSlide() {
+                    let prev = currentSlide - 1;
+                    if (prev < 0) prev = slides.length - 1;
+                    showSlide(prev);
+                }
+
+                // Event listeners
+                if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+                if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+
+                // Indicadores
+                indicators.forEach((indicator, index) => {
+                    indicator.addEventListener('click', () => {
+                        showSlide(index);
+                        resetInterval();
+                    });
+                });
+
+                // Auto slide
+                function startInterval() {
+                    slideInterval = setInterval(nextSlide, 5000);
+                }
+
+                function resetInterval() {
+                    clearInterval(slideInterval);
+                    startInterval();
+                }
+
+                // Pausar auto-slide al interactuar
+                const sliderContainer = document.querySelector('.hero-slider');
+                if (sliderContainer) {
+                    sliderContainer.addEventListener('mouseenter', () => {
+                        clearInterval(slideInterval);
+                    });
+                    
+                    sliderContainer.addEventListener('mouseleave', () => {
+                        startInterval();
+                    });
+                }
+
+                startInterval();
+            }
+
+            // ========== MOBILE MENU ==========
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            
+            if (hamburger && navLinks) {
+                hamburger.addEventListener('click', () => {
+                    const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
+                    hamburger.setAttribute('aria-expanded', !isExpanded);
+                    navLinks.classList.toggle('active');
+                    document.body.style.overflow = !isExpanded ? 'hidden' : '';
+                });
+                
+                // Close menu when clicking on a link
+                document.querySelectorAll('.nav-links a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        hamburger.setAttribute('aria-expanded', 'false');
+                        navLinks.classList.remove('active');
+                        document.body.style.overflow = '';
+                    });
+                });
+                
+                // Close menu when clicking outside
+                document.addEventListener('click', (e) => {
+                    if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
+                        hamburger.setAttribute('aria-expanded', 'false');
+                        navLinks.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }
+                });
+            }
+            
+            // ========== SCROLL PROGRESS ==========
+            const progressBar = document.getElementById('progressBar');
+            window.addEventListener('scroll', () => {
+                const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrolled = (window.scrollY / windowHeight) * 100;
+                if (progressBar) {
+                    progressBar.style.width = scrolled + '%';
+                }
+            });
+            
+            // ========== BACK TO TOP ==========
+            const backToTop = document.getElementById('backToTop');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 500) {
+                    backToTop.classList.add('visible');
+                } else {
+                    backToTop.classList.remove('visible');
+                }
+            });
+            
+            backToTop.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // ========== SCROLL ANIMATIONS ==========
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+            
+            document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right, .zoom-in').forEach(el => {
+                observer.observe(el);
+            });
+            
+            // ========== HEADER SCROLL EFFECT ==========
+            const header = document.querySelector('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 100) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+            
+            // ========== ACTIVE NAV LINK ==========
+            function highlightNavLink() {
+                const sections = document.querySelectorAll('section');
+                const navLinks = document.querySelectorAll('.nav-links a');
+                
+                let currentSection = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 100;
+                    const sectionHeight = section.clientHeight;
+                    
+                    if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                        currentSection = section.getAttribute('id');
+                    }
+                });
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${currentSection}`) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+            
+            window.addEventListener('scroll', highlightNavLink);
+            
+            // ========== MAP ==========
+            function initMap() {
+                if (!document.getElementById('map')) return;
+                
+                const sedeCarrasco = { lat: -34.884988297513814, lng: -56.07991438325803 };
+                const sedeCentro = { lat: -34.9065, lng: -56.1882 };
+                
+                const map = L.map('map').setView([-34.8957, -56.1341], 12);
+                
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                    maxZoom: 18
+                }).addTo(map);
+                
+                const markerCarrasco = L.marker(sedeCarrasco)
+                    .addTo(map)
+                    .bindPopup(`
+                        <div style="padding: 10px;">
+                            <h3 style="margin: 0 0 10px 0; color: #2c3e50;">Colegio Imagínate - Sede Carrasco</h3>
+                            <p style="margin: 5px 0;">Alberdi 5982, Carrasco, Montevideo, Uruguay</p>
+                            <p style="margin: 5px 0;"><strong>Tel:</strong> +598 99 155 501</p>
+                        </div>
+                    `);
+                    
+                const markerCentro = L.marker(sedeCentro)
+                    .addTo(map)
+                    .bindPopup(`
+                        <div style="padding: 10px;">
+                            <h3 style="margin: 0 0 10px 0; color: #2c3e50;">Colegio Imagínate - Sede Centro</h3>
+                            <p style="margin: 5px 0;">Av. 18 de Julio 1234, Centro, Montevideo, Uruguay</p>
+                            <p style="margin: 5px 0;"><strong>Tel:</strong> +598 99 155 502</p>
+                        </div>
+                    `);
+                
+                const group = new L.featureGroup([markerCarrasco, markerCentro]);
+                map.fitBounds(group.getBounds().pad(0.1));
+            }
+            
+            // ========== STATS COUNTER ==========
+            function animateCounter(element, target, duration = 2000) {
+                let start = 0;
+                const increment = target / (duration / 16);
+                const timer = setInterval(() => {
+                    start += increment;
+                    if (start >= target) {
+                        element.textContent = target;
+                        clearInterval(timer);
+                    } else {
+                        element.textContent = Math.floor(start);
+                    }
+                }, 16);
+            }
+            
+            function initCounters() {
+                const statNumbers = document.querySelectorAll('.stat-number');
+                const counterObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const target = parseInt(entry.target.getAttribute('data-count'));
+                            animateCounter(entry.target, target);
+                            counterObserver.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.5 });
+                
+                statNumbers.forEach(stat => counterObserver.observe(stat));
+            }
+            
+            // ========== CHATBOT MEJORADO ==========
+            function initChatbot() {
+                const chatToggle = document.getElementById('chatToggle');
+                const chatWidget = document.getElementById('chatWidget');
+                const chatClose = document.getElementById('chatClose');
+                const chatMessages = document.getElementById('chatMessages');
+                const chatInput = document.getElementById('chatInput');
+                const sendMessage = document.getElementById('sendMessage');
+                
+                // Base de conocimiento mejorada
+                const faqResponses = {
+                    'precios': {
+                        message: 'Nuestros aranceles varían según el nivel educativo (Maternal, Inicial o Primaria). Te invitamos a agendar una visita para conocer todos los detalles sobre costos, becas y formas de pago.',
+                        quickReplies: ['Agendar visita', 'Becas disponibles', 'Formas de pago']
+                    },
+                    'horarios': {
+                        message: 'El horario de clases es de 8:00 a 16:00, con actividades extracurriculares hasta las 17:30. También ofrecemos horario extendido para familias que lo necesiten.',
+                        quickReplies: ['Actividades extracurriculares', 'Horario extendido', 'Calendario escolar']
+                    },
+                    'inscripcion': {
+                        message: 'El proceso de inscripción incluye una entrevista familiar y evaluación diagnóstica. Requisitos: fotocopia de cédula del niño/a y padres, carné de salud y vacunas al día.',
+                        quickReplies: ['Requisitos completos', 'Agendar entrevista', 'Documentación necesaria']
+                    },
+                    'uniforme': {
+                        message: 'Sí, tenemos uniforme escolar que puede adquirirse en nuestra cooperativa. Incluye prendas para diario y educación física.',
+                        quickReplies: ['Ver uniformes', 'Precios', 'Dónde comprar']
+                    },
+                    'actividades': {
+                        message: 'Ofrecemos robótica, música, arte, deportes, inglés intensivo y talleres de desarrollo emocional. Todas incluidas en la cuota mensual.',
+                        quickReplies: ['Robótica', 'Inglés', 'Deportes', 'Arte']
+                    },
+                    'becas': {
+                        message: 'Sí, ofrecemos becas por mérito académico y apoyo socioeconómico. El proceso de solicitud incluye evaluación de documentación y entrevista familiar.',
+                        quickReplies: ['Requisitos becas', 'Proceso solicitud', 'Tipos de becas']
+                    },
+                    'default': {
+                        message: 'Puedo ayudarte con información sobre precios, horarios, inscripción, uniforme, actividades y becas. ¿Qué te gustaría saber?',
+                        quickReplies: ['Precios', 'Horarios', 'Inscripción', 'Actividades']
+                    }
+                };
+
+                // Funciones auxiliares
+                function getCurrentTime() {
+                    const now = new Date();
+                    return now.toLocaleTimeString('es-UY', { hour: '2-digit', minute: '2-digit' });
+                }
+
+                function autoResizeTextarea(textarea) {
+                    textarea.style.height = 'auto';
+                    textarea.style.height = (textarea.scrollHeight) + 'px';
+                }
+
+                function addMessage(text, isUser = false, quickReplies = null) {
+                    const messageDiv = document.createElement('div');
+                    messageDiv.className = `chat-message ${isUser ? 'user-message' : 'bot-message'}`;
+                    
+                    const messageContent = document.createElement('div');
+                    messageContent.textContent = text;
+                    messageDiv.appendChild(messageContent);
+                    
+                    if (quickReplies && !isUser) {
+                        const quickRepliesContainer = document.createElement('div');
+                        quickRepliesContainer.className = 'quick-replies';
+                        
+                        quickReplies.forEach(reply => {
+                            const button = document.createElement('button');
+                            button.className = 'quick-reply';
+                            button.textContent = reply;
+                            button.addEventListener('click', () => {
+                                handleQuickReply(reply);
+                            });
+                            quickRepliesContainer.appendChild(button);
+                        });
+                        
+                        messageDiv.appendChild(quickRepliesContainer);
+                    }
+                    
+                    const timeDiv = document.createElement('div');
+                    timeDiv.className = 'message-time';
+                    timeDiv.textContent = getCurrentTime();
+                    messageDiv.appendChild(timeDiv);
+                    
+                    chatMessages.appendChild(messageDiv);
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                }
+
+                function handleQuickReply(reply) {
+                    addMessage(reply, true);
+                    processUserMessage(reply);
+                }
+
+                function processUserMessage(message) {
+                    const lowerMessage = message.toLowerCase();
+                    let response = faqResponses.default;
+
+                    if (lowerMessage.includes('precio') || lowerMessage.includes('costo') || lowerMessage.includes('cuota') || lowerMessage.includes('arancel')) {
+                        response = faqResponses.precios;
+                    } else if (lowerMessage.includes('horario') || lowerMessage.includes('hora')) {
+                        response = faqResponses.horarios;
+                    } else if (lowerMessage.includes('inscripcion') || lowerMessage.includes('matricula') || lowerMessage.includes('inscribir')) {
+                        response = faqResponses.inscripcion;
+                    } else if (lowerMessage.includes('uniforme')) {
+                        response = faqResponses.uniforme;
+                    } else if (lowerMessage.includes('actividad') || lowerMessage.includes('taller') || lowerMessage.includes('extra')) {
+                        response = faqResponses.actividades;
+                    } else if (lowerMessage.includes('beca') || lowerMessage.includes('descuento') || lowerMessage.includes('ayuda')) {
+                        response = faqResponses.becas;
+                    } else if (lowerMessage.includes('hola') || lowerMessage.includes('buenas')) {
+                        response = {
+                            message: '¡Hola! Soy el asistente del Colegio Imagínate. Estoy aquí para ayudarte con cualquier consulta sobre nuestro colegio.',
+                            quickReplies: ['Precios', 'Horarios', 'Inscripción', 'Actividades']
+                        };
+                    } else if (lowerMessage.includes('gracias') || lowerMessage.includes('agrade')) {
+                        response = {
+                            message: '¡De nada! Si tienes más preguntas, no dudes en consultarme. ¿Hay algo más en lo que pueda ayudarte?',
+                            quickReplies: ['Sí, tengo otra pregunta', 'No, gracias']
+                        };
+                    }
+
+                    // Simular tiempo de respuesta
+                    setTimeout(() => {
+                        addMessage(response.message, false, response.quickReplies);
+                    }, 1000);
+                }
+
+                // Event listeners
+                chatToggle.addEventListener('click', () => {
+                    chatWidget.classList.add('active');
+                    chatToggle.classList.remove('pulse');
+                });
+
+                chatClose.addEventListener('click', () => {
+                    chatWidget.classList.remove('active');
+                });
+
+                sendMessage.addEventListener('click', () => {
+                    const message = chatInput.value.trim();
+                    if (message) {
+                        addMessage(message, true);
+                        chatInput.value = '';
+                        autoResizeTextarea(chatInput);
+                        sendMessage.disabled = true;
+                        processUserMessage(message);
+                    }
+                });
+
+                chatInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter' && !e.shiftKey) {
+                        e.preventDefault();
+                        sendMessage.click();
+                    }
+                });
+
+                chatInput.addEventListener('input', () => {
+                    autoResizeTextarea(chatInput);
+                    sendMessage.disabled = !chatInput.value.trim();
+                });
+
+                // Cerrar chat al hacer clic fuera
+                document.addEventListener('click', (e) => {
+                    if (!chatWidget.contains(e.target) && !chatToggle.contains(e.target) && chatWidget.classList.contains('active')) {
+                        chatWidget.classList.remove('active');
+                    }
+                });
+
+                // Inicializar textarea
+                autoResizeTextarea(chatInput);
+                sendMessage.disabled = true;
+            }
+
+            // ========== BOOKING MODAL ==========
+            function initBookingModal() {
+                const bookingModal = document.getElementById('bookingModal');
+                const openBookingModal = document.getElementById('openBookingModal');
+                const closeBookingModal = document.getElementById('closeBookingModal');
+                const bookingForm = document.getElementById('booking-form');
+
+                openBookingModal.addEventListener('click', () => {
+                    bookingModal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+
+                closeBookingModal.addEventListener('click', () => {
+                    bookingModal.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+
+                bookingForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    
+                    const submitBtn = bookingForm.querySelector('button[type="submit"]');
+                    const originalText = submitBtn.textContent;
+                    
+                    submitBtn.textContent = 'Reservando...';
+                    submitBtn.disabled = true;
+                    
+                    try {
+                        await new Promise(resolve => setTimeout(resolve, 2000));
+                        
+                        showMessage('¡Entrevista reservada! Te confirmaremos por email.', 'success');
+                        bookingForm.reset();
+                        bookingModal.classList.remove('active');
+                        document.body.style.overflow = '';
+                    } catch (error) {
+                        showMessage('Error al reservar. Por favor, intenta nuevamente.', 'error');
+                    } finally {
+                        submitBtn.textContent = originalText;
+                        submitBtn.disabled = false;
+                    }
+                });
+
+                // Cerrar modal al hacer clic fuera
+                bookingModal.addEventListener('click', (e) => {
+                    if (e.target === bookingModal) {
+                        bookingModal.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }
+                });
+            }
+
+            // ========== CONTACT FORM ==========
+            const contactForm = document.getElementById('contact-form');
+            
+            if (contactForm) {
+                // Form validation
+                const validateField = (field) => {
+                    const formGroup = field.closest('.form-group');
+                    const errorMessage = formGroup.querySelector('.error-message');
+                    
+                    formGroup.classList.remove('error', 'success');
+                    
+                    if (field.hasAttribute('required') && !field.value.trim()) {
+                        formGroup.classList.add('error');
+                        return false;
+                    }
+                    
+                    if (field.type === 'email' && field.value.trim()) {
+                        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                        if (!emailRegex.test(field.value.trim())) {
+                            formGroup.classList.add('error');
+                            return false;
+                        }
+                    }
+                    
+                    if (field.type === 'tel' && field.value.trim()) {
+                        const phoneRegex = /^[\d\s\-\+\(\)]{8,}$/;
+                        if (!phoneRegex.test(field.value.trim())) {
+                            formGroup.classList.add('error');
+                            return false;
+                        }
+                    }
+                    
+                    if (field.value.trim()) {
+                        formGroup.classList.add('success');
+                    }
+                    
+                    return true;
+                };
+                
+                // Real-time validation
+                const formFields = contactForm.querySelectorAll('input, textarea, select');
+                formFields.forEach(field => {
+                    field.addEventListener('blur', () => validateField(field));
+                    field.addEventListener('input', () => {
+                        const formGroup = field.closest('.form-group');
+                        formGroup.classList.remove('error', 'success');
+                    });
+                });
+                
+                // Form submission
+                contactForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    
+                    let isValid = true;
+                    formFields.forEach(field => {
+                        if (!validateField(field)) {
+                            isValid = false;
+                        }
+                    });
+                    
+                    if (!isValid) {
+                        showMessage('Por favor completa todos los campos requeridos correctamente.', 'error');
+                        return;
+                    }
+                    
+                    const submitBtn = contactForm.querySelector('button[type="submit"]');
+                    const originalText = submitBtn.textContent;
+                    
+                    submitBtn.textContent = 'Enviando...';
+                    submitBtn.disabled = true;
+                    
+                    try {
+                        const formData = new FormData(contactForm);
+                        formData.append('timestamp', new Date().toISOString());
+                        
+                        await new Promise(resolve => setTimeout(resolve, 2000));
+                        
+                        // Track form submission
+                        if (typeof gtag !== 'undefined') {
+                            gtag('event', 'form_submission', {
+                                'event_category': 'contact',
+                                'event_label': 'information_request'
+                            });
+                        }
+                        
+                        showMessage('¡Gracias por tu mensaje! Te contactaremos dentro de las próximas 24 horas.', 'success');
+                        contactForm.reset();
+                        
+                        formFields.forEach(field => {
+                            const formGroup = field.closest('.form-group');
+                            formGroup.classList.remove('success');
+                        });
+                    } catch (error) {
+                        showMessage('Error al enviar el mensaje. Por favor, intenta nuevamente o contáctanos por teléfono.', 'error');
+                    } finally {
+                        submitBtn.textContent = originalText;
+                        submitBtn.disabled = false;
+                    }
+                });
+            }
+            
+            // ========== UTILITY FUNCTIONS ==========
+            function showMessage(message, type) {
+                const existingMessages = document.querySelectorAll('.message-toast');
+                existingMessages.forEach(msg => msg.remove());
+                
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `message-toast ${type}`;
+                messageDiv.textContent = message;
+                messageDiv.setAttribute('role', 'alert');
+                messageDiv.setAttribute('aria-live', 'polite');
+                
+                document.body.appendChild(messageDiv);
+                
+                setTimeout(() => {
+                    if (messageDiv.parentNode) {
+                        messageDiv.parentNode.removeChild(messageDiv);
+                    }
+                }, 5000);
+            }
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        const headerHeight = document.querySelector('header').offsetHeight;
+                        const targetPosition = targetElement.offsetTop - headerHeight;
+                        
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Track click in analytics
+                        if (typeof gtag !== 'undefined') {
+                            gtag('event', 'click', {
+                                'event_category': 'navigation',
+                                'event_label': targetId
+                            });
+                        }
+                    }
+                });
+            });
+            
+            // ========== INITIALIZE EVERYTHING ==========
+            initSlider();
+            initMap();
+            initCounters();
+            initChatbot();
+            initBookingModal();
+            highlightNavLink();
+        });
+    </script>
+</body>
+</html>
